@@ -1,19 +1,44 @@
-package selinium;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+package keywordDriven;
 
 public class Facebook {
-
-	public static void main(String[] args) {
-		
-			System.setProperty("webdriver.firefox.marionette","D:\\Selinium-Getsy\\geckodriver-v0.19.1-win32\\geckoderiver.exe");
-			WebDriver driver= new FirefoxDriver();
-			driver.manage().window().maximize();
-			driver.get("https://www.facebook.com/");
-			driver.findElement(By.id("u_0_k")).sendKeys("Rubiya");
-
+	public static void main(String args[]) throws Exception
+	{
+		ExcelRead.setExcelFile(FaceBookConstant.excelPath + FaceBookConstant.excelName ,FaceBookConstant.sheetName);
+		for(int i=1;i<=6;i++)
+		{
+			String ActionsKeyword=ExcelRead.getCellData(i,2);
+			if(ActionsKeyword.equals("openBrowser"))
+			{
+				GetKeyword.openBrowser();
+			}
+			else if(ActionsKeyword.equals("navigateUrl"))
+			{
+				GetKeyword.navigateUrl();
+			}
+			else if(ActionsKeyword.equals("inputUsername"))
+			{
+				GetKeyword.inputUsername();
+			}
+			else if(ActionsKeyword.equals("inputsurname"))
+			{
+				GetKeyword.inputsurname();
+			}
+			else if(ActionsKeyword.equals("inputEmailorMobile"))
+			{
+				GetKeyword.inputEmailorMobile();
+			}
+			else if(ActionsKeyword.equals("InputPassword"))
+			{
+				GetKeyword.InputPassword();
+			}
+			
+			
+		}
 	}
+	
 
 }
+
+
+
+
